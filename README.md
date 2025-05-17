@@ -6,7 +6,7 @@
 
 # DÉPARTEMENT D'INFORMATIQUE
 ## CONCEPTION ET IMPLÉMENTATION D'UN GÉNÉRATEUR D'EMPLOI DU TEMPS UNIVERSITAIRE
-### Présenté par : NIKOUM Lorene
+### Présenté par : SPRING_SHOGUN🍃🍃
 ### Matricule : 21T2580
 ### Niveau : Master 1
 ### Date : Mai 2025
@@ -421,17 +421,4 @@ Le générateur développé répond aux besoins exprimés et offre une solution 
 Les perspectives d'amélioration identifiées ouvrent la voie à de futurs développements qui pourront rendre cet outil encore plus performant et flexible.
 
 ## RÉFÉRENCES
-
-1. Google OR-Tools. (2023). *Google Optimization Tools*. https://developers.google.com/optimization
-
-2. Schaerf, A. (1999). A survey of automated timetabling. *Artificial Intelligence Review*, 13(2), 87-127.
-
-3. Burke, E. K., & Petrovic, S. (2002). Recent research directions in automated timetabling. *European Journal of Operational Research*, 140(2), 266-280.
-
-4. Kristiansen, S., & Stidsen, T. R. (2013). A comprehensive study of educational timetabling - a survey. *Department of Management Engineering, Technical University of Denmark*.
-
-5. Python Software Foundation. (2023). *Python Language Reference, version 3.9*. https://docs.python.org/3/
-
-6. Jensen, T. R., & Toft, B. (2011). *Graph coloring problems*. John Wiley & Sons.
-
-7. Rossi, F., Van Beek, P., & Walsh, T. (Eds.). (2006). *Handbook of constraint programming*. Elsevier.
+@@SPRING_SHOGUN🍃🍃
