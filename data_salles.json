@@ -1,0 +1,100 @@
+{
+        "Informatique": [
+          {
+            "num": "A1001",
+            "capacite": "1001",
+            "batiment": "AMPHI",
+            "filier": "INFO"
+          },
+          {
+            "num": "A1002",
+            "capacite": "1002",
+            "batiment": "AMPHI",
+            "filier": "INFO"
+          },
+          {
+            "num": "AI",
+            "capacite": "84",
+            "batiment": "AMPHI",
+            "filier": "INFO"
+          },
+          {
+            "num": "A250",
+            "capacite": "250",
+            "batiment": "AMPHI",
+            "filier": "INFO"
+          },
+          {
+            "num": "A135",
+            "capacite": "135",
+            "batiment": "AMPHI",
+            "filier": "INFO"
+          },
+          {
+            "num": "A502",
+            "capacite": "502",
+            "batiment": "AMPHI",
+            "filier": "INFO"
+          },
+          {
+            "num": "A350",
+            "capacite": "350",
+            "batiment": "AMPHI",
+            "filier": "INFO"
+          },
+          {
+            "num": "S006",
+            "capacite": "70",
+            "batiment": "EXTENSION 1",
+            "filier": "INFO"
+          },
+          {
+            "num": "S008",
+            "capacite": "115",
+            "batiment": "EXTENSION 1",
+            "filier": "INFO"
+          },
+          {
+            "num": "AIII",
+            "capacite": "156",
+            "batiment": "AMPHI",
+            "filier": "INFO"
+          },
+          {
+            "num": "S005",
+            "capacite": "56",
+            "batiment": "EXTENSION 2",
+            "filier": "INFO"
+          },
+          {
+            "num": "S003",
+            "capacite": "70",
+            "batiment": "EXTENSION 2",
+            "filier": "INFO"
+          },
+          {
+            "num": "R110",
+            "capacite": "54",
+            "batiment": "BLOC PEDAGOGIQUE",
+            "filier": "INFO"
+          },
+          {
+            "num": "E203",
+            "capacite": "36",
+            "batiment": "BLOC PEDAGOGIQUE",
+            "filier": "INFO"
+          },
+          {
+            "num": "R101",
+            "capacite": "126",
+            "batiment": "BLOC PEDAGOGIQUE",
+            "filier": "INFO"
+          },
+          {
+            "num": "R108",
+            "capacite": "126",
+            "batiment": "BLOC PEDAGOGIQUE",
+            "filier": "INFO"
+          }
+        ]
+}
