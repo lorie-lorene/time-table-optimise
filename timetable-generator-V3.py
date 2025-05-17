@@ -1,20 +1,3 @@
-"""
-Timetable Generator using Google OR-Tools for Computer Science Department
-
-Specifications:
-1. No class can be scheduled in multiple classrooms with different courses/teachers at the same time
-2. All courses for a class should be scheduled exactly once per week
-3. A class should not be scheduled to take a course not in its curriculum
-4. If a course can't be scheduled in the morning, schedule it in the next available period
-5. ALL courses MUST be scheduled - this is a hard constraint
-
-Periods:
-- p1: 7:00am - 9:55am (weight 1)
-- p2: 10:05am - 12:55pm (weight 2)
-- p3: 1:05pm - 3:55pm (weight 3)
-- p4: 4:05pm - 6:55pm (weight 4)
-- p5: 7:05pm - 9:55pm (weight 5)
-"""
 
 import json
 import pandas as pd
@@ -185,7 +168,7 @@ class TimeTableGenerator:
                     if assignments:
                         self.model.Add(sum(assignments) <= 1)
         
-        # NEW: Constraint 6 - Encourage progression to later periods if morning is full
+        # NEW: adding Constraint 6 - Encourage progression to later periods if morning is full just for have all cours schedul
         # Add preference variables to prefer earlier time slots
         self.period_preference_vars = {}
         
@@ -283,7 +266,7 @@ class TimeTableGenerator:
     def generate_combined_html_timetable(self):
         """Generate a single HTML file containing all timetables with navigation"""
         
-        # Start HTML document
+        # Start HTML visualisation
         html = """
         <!DOCTYPE html>
         <html lang="fr">
@@ -719,7 +702,7 @@ class TimeTableGenerator:
         # Add JavaScript for navigation
         html += """
                 <div class="footer">
-                    © 2025 Département d'Informatique - Tous droits réservés
+                    © 2025 Département d'Informatique - Tous droits réservés(Spring_Shogun🍃🍃)
                 </div>
             </div>
             
