@@ -1,0 +1,1265 @@
+
+        <!DOCTYPE html>
+        <html lang="fr">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Emplois du Temps - Département d'Informatique</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 20px;
+                    color: #333;
+                }
+                .header {
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+                .header h1 {
+                    color: #003366;
+                    margin-bottom: 5px;
+                }
+                .header h2 {
+                    color: #005599;
+                    margin-top: 0;
+                    margin-bottom: 5px;
+                }
+                .header h3 {
+                    color: #0077cc;
+                    margin-top: 0;
+                }
+                .nav-container {
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 30px;
+                    flex-wrap: wrap;
+                }
+                .nav-button {
+                    padding: 10px 15px;
+                    margin: 5px;
+                    background-color: #003366;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 14px;
+                }
+                .nav-button:hover {
+                    background-color: #004a8f;
+                }
+                .nav-button.active {
+                    background-color: #0077cc;
+                }
+                .timetable-container {
+                    display: none;
+                }
+                .timetable-container.active {
+                    display: block;
+                }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-bottom: 20px;
+                }
+                th, td {
+                    border: 1px solid #ddd;
+                    padding: 10px;
+                    text-align: center;
+                }
+                th {
+                    background-color: #003366;
+                    color: white;
+                }
+                tr:nth-child(even) {
+                    background-color: #f2f2f2;
+                }
+                .time-col {
+                    width: 15%;
+                    background-color: #e6e6e6;
+                    font-weight: bold;
+                }
+                .course-name {
+                    font-weight: bold;
+                    color: #003366;
+                }
+                .instructor {
+                    font-size: 0.9em;
+                    margin-top: 5px;
+                }
+                .room {
+                    font-size: 0.85em;
+                    color: #666;
+                    margin-top: 3px;
+                }
+                .empty-cell {
+                    background-color: #f9f9f9;
+                }
+                .legend {
+                    margin-top: 30px;
+                }
+                .legend h3 {
+                    color: #003366;
+                    border-bottom: 1px solid #ddd;
+                    padding-bottom: 5px;
+                }
+                .legend-item {
+                    margin-bottom: 5px;
+                }
+                .legend-code {
+                    font-weight: bold;
+                    color: #003366;
+                }
+                .print-button {
+                    display: block;
+                    margin: 20px auto;
+                    padding: 10px 20px;
+                    background-color: #003366;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+                .print-button:hover {
+                    background-color: #004a8f;
+                }
+                @media print {
+                    .nav-container, .print-button {
+                        display: none;
+                    }
+                    .timetable-container {
+                        display: block;
+                        page-break-after: always;
+                    }
+                    body {
+                        padding: 0;
+                        font-size: 12px;
+                    }
+                    table {
+                        page-break-inside: avoid;
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <h1>Emplois du Temps</h1>
+                <h2>Département d'Informatique</h2>
+                <h3>Année académique 2024-2025</h3>
+            </div>
+            
+            <div class="nav-container">
+        
+                <button class="nav-button" onclick="showTimetable('Level-1-s1')">Niveau 1 - Semestre s1</button>
+            
+                <button class="nav-button" onclick="showTimetable('Level-1-s2')">Niveau 1 - Semestre s2</button>
+            
+                <button class="nav-button" onclick="showTimetable('Level-2-s1')">Niveau 2 - Semestre s1</button>
+            
+                <button class="nav-button" onclick="showTimetable('Level-2-s2')">Niveau 2 - Semestre s2</button>
+            
+                <button class="nav-button" onclick="showTimetable('Level-3-s1')">Niveau 3 - Semestre s1</button>
+            
+                <button class="nav-button" onclick="showTimetable('Level-3-s2')">Niveau 3 - Semestre s2</button>
+            
+                <button class="nav-button" onclick="showTimetable('Level-4-s1')">Niveau 4 - Semestre s1</button>
+            
+                <button class="nav-button" onclick="showTimetable('Level-4-s2')">Niveau 4 - Semestre s2</button>
+            
+            </div>
+            
+            <button class="print-button" onclick="window.print()">Imprimer tous les emplois du temps</button>
+        
+            <div id="Level-1-s1" class="timetable-container">
+                <h2>Niveau 1 - Semestre s1</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="time-col">Horaire</th>
+            <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                        <tr>
+                            <td class="time-col">7:00am - 9:55am</td>
+                
+                            <td>
+                                <div class="course-name">INF121</div>
+                                <div class="instructor">KOUOKAM, KOUOKAM E. A.</div>
+                                <div class="room">EXTENSION 1 S006</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">MAT131</div>
+                                <div class="instructor">BOGSO</div>
+                                <div class="room">AMPHI A250</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF141</div>
+                                <div class="instructor">EKODECK</div>
+                                <div class="room">AMPHI A135</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">FBL111</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">AMPHI A502</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF131</div>
+                                <div class="instructor">DOMGA, KOMGUEM Rodrigue</div>
+                                <div class="room">EXTENSION 2 S005</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF111</div>
+                                <div class="instructor">ATSA, ETOUNDI ROGER</div>
+                                <div class="room">BLOC PEDAGOGIQUE R101</div>
+                            </td>
+                        
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">10:05am - 12:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">1:05pm - 3:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">PPE111</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">BLOC PEDAGOGIQUE R108</div>
+                            </td>
+                        <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">4:05pm - 6:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">7:05pm - 9:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                    </tbody>
+                </table>
+                
+                <div class="legend">
+                    <h3>Légende des Cours</h3>
+            
+                    <div class="legend-item">
+                        <span class="legend-code">INF111</span>: INTRODUCTION À L'ALGORITHMIQUE ET À LA PROGRAMMATION
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF121</span>: INTRODUCTION À L'ARCHITECTURE DES ORDINATEURS
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF131</span>: INTRODUCTION AUX SYSTÈMES ET RÉSEAUX
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">MAT131</span>: ANALYSE DE LA DROITE REELLE
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">FBL111</span>: FORMATION BILINGUE I
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF141</span>: INTRODUCTION À LA SÉCURITÉ INFORMATIQUE
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">PPE111</span>: EXPLORATION PROFESSIONNELLE, ORIENTATION ET EDUCATION A LA CITOYENETE
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div id="Level-1-s2" class="timetable-container">
+                <h2>Niveau 1 - Semestre s2</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="time-col">Horaire</th>
+            <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                        <tr>
+                            <td class="time-col">7:00am - 9:55am</td>
+                
+                            <td>
+                                <div class="course-name">INFO132</div>
+                                <div class="instructor">TSOPZE, NORBERT</div>
+                                <div class="room">BLOC PEDAGOGIQUE R108</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF122</div>
+                                <div class="instructor">KOUOKAM, KOUOKAM E. A.</div>
+                                <div class="room">BLOC PEDAGOGIQUE R101</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF112</div>
+                                <div class="instructor">AMINOU, HALIDOU</div>
+                                <div class="room">BLOC PEDAGOGIQUE R101</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INFO142</div>
+                                <div class="instructor">MELATAGIA, YONTA PAULIN</div>
+                                <div class="room">EXTENSION 1 S008</div>
+                            </td>
+                        <td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">MAT112</div>
+                                <div class="instructor">OGADOA</div>
+                                <div class="room">BLOC PEDAGOGIQUE R108</div>
+                            </td>
+                        
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">10:05am - 12:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">1:05pm - 3:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">4:05pm - 6:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">7:05pm - 9:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                    </tbody>
+                </table>
+                
+                <div class="legend">
+                    <h3>Légende des Cours</h3>
+            
+                    <div class="legend-item">
+                        <span class="legend-code">INF112</span>: INTRODUCTION AUX STRUCTURES DE DONNEES
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF122</span>: FONDEMENTS MATHEMATIQUES DE L'INFORMATIQUE
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INFO132</span>: PROGRAMMATION STRUCTUREE EN C
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INFO142</span>: INTRODUCTION À LA SCIENCE DES DONNÉES
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">MAT112</span>: ALGEBRE 1B
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div id="Level-2-s1" class="timetable-container">
+                <h2>Niveau 2 - Semestre s1</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="time-col">Horaire</th>
+            <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                        <tr>
+                            <td class="time-col">7:00am - 9:55am</td>
+                
+                            <td>
+                                <div class="course-name">INF231</div>
+                                <div class="instructor">TAPAMO, HYPOLITE</div>
+                                <div class="room">AMPHI AIII</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF251</div>
+                                <div class="instructor">BAYEM, JACQUES NARCISSE</div>
+                                <div class="room">AMPHI AIII</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF211</div>
+                                <div class="instructor">ABESSOLO, GHISLAIN</div>
+                                <div class="room">AMPHI A1002</div>
+                            </td>
+                        <td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">INF221</div>
+                                <div class="instructor">ABESSOLO, GHISLAIN</div>
+                                <div class="room">AMPHI A1002</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">MAT211</div>
+                                <div class="instructor">MBIAKOP, Hilaire George</div>
+                                <div class="room">AMPHI A135</div>
+                            </td>
+                        
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">10:05am - 12:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">1:05pm - 3:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">FBL211</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">AMPHI A135</div>
+                            </td>
+                        <td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">4:05pm - 6:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">7:05pm - 9:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                    </tbody>
+                </table>
+                
+                <div class="legend">
+                    <h3>Légende des Cours</h3>
+            
+                    <div class="legend-item">
+                        <span class="legend-code">FBL211</span>: FORMATION BILINGUE II
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF211</span>: PROGRAMMATION ORIENTÉE OBJET
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF221</span>: BASES DE DONNEES ET MODELISATION
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF231</span>: METHODES ALGORITHMIQUES ET STRUCTURES DE DONNEES
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">MAT211</span>: ALGEBRE 2A : THEORIE SPECTRALE ET ALGEBRE MULTILINEAIRE
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF251</span>: GENIE LOGICIEL ET SYSTEMES D'INFORMATION
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div id="Level-2-s2" class="timetable-container">
+                <h2>Niveau 2 - Semestre s2</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="time-col">Horaire</th>
+            <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                        <tr>
+                            <td class="time-col">7:00am - 9:55am</td>
+                
+                            <td>
+                                <div class="course-name">MAT232</div>
+                                <div class="instructor">FOKAM</div>
+                                <div class="room">AMPHI AI</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">PPE212</div>
+                                <div class="instructor">TAPAMO, HYPOLITE</div>
+                                <div class="room">AMPHI A135</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF232</div>
+                                <div class="instructor">MAKEMBE, S. OSWALD</div>
+                                <div class="room">AMPHI AI</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF212</div>
+                                <div class="instructor">NDOUNDAM, RENE</div>
+                                <div class="room">EXTENSION 2 S005</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF252</div>
+                                <div class="instructor">NKONDOCK, BAHANACK N.</div>
+                                <div class="room">AMPHI A135</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF242</div>
+                                <div class="instructor">MELATAGIA, YONTA PAULIN</div>
+                                <div class="room">AMPHI A250</div>
+                            </td>
+                        
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">10:05am - 12:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">INF222</div>
+                                <div class="instructor">MESSI NGEULE, THOMAS</div>
+                                <div class="room">AMPHI AIII</div>
+                            </td>
+                        
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">1:05pm - 3:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">4:05pm - 6:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">7:05pm - 9:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                    </tbody>
+                </table>
+                
+                <div class="legend">
+                    <h3>Légende des Cours</h3>
+            
+                    <div class="legend-item">
+                        <span class="legend-code">INF222</span>: PROGRAMMATION WEB
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF232</span>: STATISTIQUES ET ANALYSE DE DONNEES
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF212</span>: MATHEMATIQUES DISCRETES
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF242</span>: SCIENCE DES DONNEES
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF252</span>: SECURITE INFORMATIQUE
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">PPE212</span>: PROJET PROFESSIONNEL ET PRE-IMMERSION
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">MAT232</span>: CALCUL INTEGRAL SUR Rn
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div id="Level-3-s1" class="timetable-container">
+                <h2>Niveau 3 - Semestre s1</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="time-col">Horaire</th>
+            <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                        <tr>
+                            <td class="time-col">7:00am - 9:55am</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">FRA3045</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">AMPHI A1001</div>
+                            </td>
+                        <td class="empty-cell"></td><td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">INF3015</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">AMPHI AI</div>
+                            </td>
+                        
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">10:05am - 12:55pm</td>
+                
+                            <td>
+                                <div class="course-name">ENG3035</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">AMPHI A250</div>
+                            </td>
+                        <td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">INF3025</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">AMPHI A250</div>
+                            </td>
+                        <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">1:05pm - 3:55pm</td>
+                <td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">INF3125</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">AMPHI A135</div>
+                            </td>
+                        <td class="empty-cell"></td><td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">INF3115</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">EXTENSION 1 S006</div>
+                            </td>
+                        <td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">4:05pm - 6:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">7:05pm - 9:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                    </tbody>
+                </table>
+                
+                <div class="legend">
+                    <h3>Légende des Cours</h3>
+            
+                    <div class="legend-item">
+                        <span class="legend-code">ENG3035</span>: ENGLISH FOR MATHEMATICS AND COMPUTER SCIENCE II
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">FRA3045</span>: FRANÇAIS POUR SCIENCES MATHÉMATIQUES ET INFORMATIQUES II
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF3015</span>: CONCEPTION ET ANALYSE DES ALGORITHMES
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF3025</span>: CALCUL SCIENTIFIQUE
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF3115</span>: FOUILLE DE DONNÉES I
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF3125</span>: ANALYSES STATISTIQUES
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div id="Level-3-s2" class="timetable-container">
+                <h2>Niveau 3 - Semestre s2</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="time-col">Horaire</th>
+            <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                        <tr>
+                            <td class="time-col">7:00am - 9:55am</td>
+                
+                            <td>
+                                <div class="course-name">INF316</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">BLOC PEDAGOGIQUE R110</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF362</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">AMPHI AI</div>
+                            </td>
+                        <td class="empty-cell"></td><td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">INF332</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">EXTENSION 1 S008</div>
+                            </td>
+                        <td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">10:05am - 12:55pm</td>
+                <td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">INF342</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">BLOC PEDAGOGIQUE R108</div>
+                            </td>
+                        <td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">INF382</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">AMPHI A1001</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF352</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">AMPHI AIII</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF322</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">AMPHI A250</div>
+                            </td>
+                        
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">1:05pm - 3:55pm</td>
+                
+                            <td>
+                                <div class="course-name">INF372</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">AMPHI A135</div>
+                            </td>
+                        <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">PPE312</div>
+                                <div class="instructor">TBD</div>
+                                <div class="room">AMPHI A135</div>
+                            </td>
+                        
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">4:05pm - 6:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">7:05pm - 9:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                    </tbody>
+                </table>
+                
+                <div class="legend">
+                    <h3>Légende des Cours</h3>
+            
+                    <div class="legend-item">
+                        <span class="legend-code">INF382</span>: 
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF372</span>: 
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF322</span>: 
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF362</span>: 
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF352</span>: 
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF342</span>: 
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF316</span>: 
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF332</span>: 
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">PPE312</span>: PROJET PROFESSIONNEL DE L'ETUDIANT III
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div id="Level-4-s1" class="timetable-container">
+                <h2>Niveau 4 - Semestre s1</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="time-col">Horaire</th>
+            <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                        <tr>
+                            <td class="time-col">7:00am - 9:55am</td>
+                
+                            <td>
+                                <div class="course-name">INF4167</div>
+                                <div class="instructor">EBELLE</div>
+                                <div class="room">AMPHI A350</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4127</div>
+                                <div class="instructor">MELATAGIA, YONTA PAULIN</div>
+                                <div class="room">AMPHI A1002</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4137</div>
+                                <div class="instructor">NZEKON</div>
+                                <div class="room">AMPHI A502</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4097</div>
+                                <div class="instructor">ADAMOU, HAMZA</div>
+                                <div class="room">AMPHI AI</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4157</div>
+                                <div class="instructor">DJAM KIMBI, XAVERIA YOUHEP</div>
+                                <div class="room">BLOC PEDAGOGIQUE R101</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4087</div>
+                                <div class="instructor">AMINOU, HALIDOU</div>
+                                <div class="room">EXTENSION 2 S003</div>
+                            </td>
+                        
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">10:05am - 12:55pm</td>
+                
+                            <td>
+                                <div class="course-name">INF4017</div>
+                                <div class="instructor">NDOUNDAM, RENE</div>
+                                <div class="room">BLOC PEDAGOGIQUE R108</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4057</div>
+                                <div class="instructor">DJAM KIMBI, XAVERIA YOUHEP</div>
+                                <div class="room">AMPHI AIII</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4077</div>
+                                <div class="instructor">JIOMEKONG, FIDEL AZANZI</div>
+                                <div class="room">AMPHI A135</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4027</div>
+                                <div class="instructor">ATSA, ETOUNDI ROGER</div>
+                                <div class="room">AMPHI A1002</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4107</div>
+                                <div class="instructor">MONTHE, VALERY</div>
+                                <div class="room">AMPHI A502</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4117</div>
+                                <div class="instructor">TSOPZE, NORBERT</div>
+                                <div class="room">BLOC PEDAGOGIQUE R101</div>
+                            </td>
+                        
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">1:05pm - 3:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">INF4147</div>
+                                <div class="instructor">EBELLE</div>
+                                <div class="room">EXTENSION 1 S006</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4067</div>
+                                <div class="instructor">VALERY, MONTHE</div>
+                                <div class="room">AMPHI A1002</div>
+                            </td>
+                        <td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">4:05pm - 6:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">7:05pm - 9:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                    </tbody>
+                </table>
+                
+                <div class="legend">
+                    <h3>Légende des Cours</h3>
+            
+                    <div class="legend-item">
+                        <span class="legend-code">INF4017</span>: COMPLEXITÉ ET ALGORITHMIQUE AVANCÉE
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4027</span>: GÉNIE LOGICIEL
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4057</span>: ARCHITECTURES LOGICIELLES
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4067</span>: UML ET DESIGN PATTERNS
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4077</span>: PROGRAMMATION DES TERMINAUX MOBILES
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4087</span>: RÉSEAUX II
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4097</span>: PRINCIPES DE CONCEPTION DES SYSTÈMES D'EXPLOITATION
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4107</span>: CLOUD COMPUTING
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4117</span>: FOUILLE DE DONNÉES II
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4127</span>: TECHNIQUES D'OPTIMISATION II
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4137</span>: ANALYSE DES DONNÉES
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4147</span>: SÉCURITÉ INFORMATIQUE
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4157</span>: SÉCURITÉ LOGICIELLE
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4167</span>: CRYPTOGRAPHIE SYMÉTRIQUE
+                    </div>
+                
+                </div>
+            </div>
+            
+            <div id="Level-4-s2" class="timetable-container">
+                <h2>Niveau 4 - Semestre s2</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="time-col">Horaire</th>
+            <th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                        <tr>
+                            <td class="time-col">7:00am - 9:55am</td>
+                
+                            <td>
+                                <div class="course-name">INF4208</div>
+                                <div class="instructor">DOMGA, KOMGUEM Rodrigue</div>
+                                <div class="room">AMPHI A1001</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4288</div>
+                                <div class="instructor">EBELLE</div>
+                                <div class="room">BLOC PEDAGOGIQUE R108</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4178</div>
+                                <div class="instructor">DJAM KIMBI, XAVERIA YOUHEP</div>
+                                <div class="room">AMPHI AIII</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4238</div>
+                                <div class="instructor">TAPAMO, HYPOLITE</div>
+                                <div class="room">AMPHI A250</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4048</div>
+                                <div class="instructor">KOUOKAM, KOUOKAM E. A.</div>
+                                <div class="room">EXTENSION 2 S003</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4278</div>
+                                <div class="instructor">NDOUNDAM, RENE</div>
+                                <div class="room">EXTENSION 1 S006</div>
+                            </td>
+                        
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">10:05am - 12:55pm</td>
+                
+                            <td>
+                                <div class="course-name">INF4268</div>
+                                <div class="instructor">EKODECK</div>
+                                <div class="room">BLOC PEDAGOGIQUE R101</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4198</div>
+                                <div class="instructor">JIOMEKONG, FIDEL AZANZI</div>
+                                <div class="room">EXTENSION 1 S006</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4248</div>
+                                <div class="instructor">MELATAGIA, YONTA PAULIN</div>
+                                <div class="room">BLOC PEDAGOGIQUE R108</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4048</div>
+                                <div class="instructor">KOUOKAM, KOUOKAM E. A.</div>
+                                <div class="room">EXTENSION 2 S003</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4258</div>
+                                <div class="instructor">TSOPZE, NORBERT</div>
+                                <div class="room">AMPHI A350</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4038</div>
+                                <div class="instructor">TAPAMO, HYPOLITE</div>
+                                <div class="room">AMPHI A1002</div>
+                            </td>
+                        
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">1:05pm - 3:55pm</td>
+                <td class="empty-cell"></td>
+                            <td>
+                                <div class="course-name">INF4188</div>
+                                <div class="instructor">JIOMEKONG, FIDEL AZANZI</div>
+                                <div class="room">AMPHI A1001</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4218</div>
+                                <div class="instructor">ADAMOU, HAMZA</div>
+                                <div class="room">BLOC PEDAGOGIQUE R110</div>
+                            </td>
+                        
+                            <td>
+                                <div class="course-name">INF4228</div>
+                                <div class="instructor">AMINOU, HALIDOU</div>
+                                <div class="room">EXTENSION 1 S006</div>
+                            </td>
+                        <td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">4:05pm - 6:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                        <tr>
+                            <td class="time-col">7:05pm - 9:55pm</td>
+                <td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td><td class="empty-cell"></td>
+                        </tr>
+                
+                    </tbody>
+                </table>
+                
+                <div class="legend">
+                    <h3>Légende des Cours</h3>
+            
+                    <div class="legend-item">
+                        <span class="legend-code">INF4038</span>: BASE DE DONNÉES DISTRIBUÉES
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4048</span>: COMPILATION
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4178</span>: GÉNIE LOGICIEL I
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4188</span>: WEB SÉMANTIQUE ET APPLICATIONS
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4198</span>: PROJET II
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4048</span>: COMPILATION
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4208</span>: RÉSEAUX MOBILES ET SANS FILS
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4218</span>: PROGRAMMATION DISTRIBUÉE
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4228</span>: PROJET II
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4238</span>: VISION PAR ORDINATEUR
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4248</span>: APPRENTISSAGE ARTIFICIEL II
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4258</span>: PROJET II
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4268</span>: CRYPTOGRAPHIE ASYMÉTRIQUE
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4278</span>: COURBES ELLIPTIQUES 1
+                    </div>
+                
+                    <div class="legend-item">
+                        <span class="legend-code">INF4288</span>: PROJET II
+                    </div>
+                
+                </div>
+            </div>
+            
+            <script>
+                // Show the first timetable by default
+                document.addEventListener('DOMContentLoaded', function() {
+                    const firstButton = document.querySelector('.nav-button');
+                    const firstTimetable = document.querySelector('.timetable-container');
+                    
+                    if (firstButton && firstTimetable) {
+                        firstButton.classList.add('active');
+                        firstTimetable.classList.add('active');
+                    }
+                });
+                
+                // Function to show the selected timetable
+                function showTimetable(id) {
+                    // Hide all timetables
+                    const timetables = document.querySelectorAll('.timetable-container');
+                    timetables.forEach(timetable => {
+                        timetable.classList.remove('active');
+                    });
+                    
+                    // Remove active class from all buttons
+                    const buttons = document.querySelectorAll('.nav-button');
+                    buttons.forEach(button => {
+                        button.classList.remove('active');
+                    });
+                    
+                    // Show the selected timetable
+                    const selectedTimetable = document.getElementById(id);
+                    if (selectedTimetable) {
+                        selectedTimetable.classList.add('active');
+                    }
+                    
+                    // Add active class to the clicked button
+                    const buttonSelector = `.nav-button[onclick="showTimetable('${id}')"]`;
+                    const selectedButton = document.querySelector(buttonSelector);
+                    if (selectedButton) {
+                        selectedButton.classList.add('active');
+                    }
+                }
+            </script>
+        </body>
+        </html>
+        
